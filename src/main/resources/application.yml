@@ -1,0 +1,9 @@
+server:
+  port: 9999
+  servlet:
+    context-path: /
+
+
+logging:
+  level:
+    root: warn
