@@ -21,13 +21,13 @@ import java.io.IOException;
  * 认证失败后的处理器
  */
 @Component
-public class TestAuthenctiationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+public class TestAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	private ObjectMapper objectMapper;
-	
+
 	@Autowired
 	private SecurityProperties securityProperties;
 
