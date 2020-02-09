@@ -30,4 +30,11 @@ public interface UserService extends IService<User> {
      */
     User getByUsername(String username);
 
+    /**
+     * 根据电话获取用户
+     * @param phone
+     * @return
+     */
+    User getByPhone(String phone);
+
 }

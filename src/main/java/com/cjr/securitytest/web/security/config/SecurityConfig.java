@@ -41,6 +41,8 @@ public class SecurityConfig extends AbstractChannelSecurityConfig {
                         SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,           // 手机验证码登录请求处理url
                         securityProperties.getLoginPage(),	// 默认登录页面
                         SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX+"/*"
+                        ,"/static/*"
+//                        "/static/js/login.js"
                 ).permitAll()	// 不需要认证的请求(处理所有需要验证的控制器、登录页面等等)
                 .anyRequest()			// 任何请求
                 .authenticated()		// 都需要认证

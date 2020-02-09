@@ -1,6 +1,7 @@
 package com.cjr.securitytest.web.controller;
 
 import com.cjr.securitytest.web.dto.response.BaseResponse;
+import com.cjr.securitytest.web.security.dal.entity.User;
 import com.cjr.securitytest.web.security.dal.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,6 @@ public class Test {
      */
     @RequestMapping("/helloWorld")
     public BaseResponse helloWorld() {
-        userService.getByUsername("");
         log.info("info-helloWorld....");
         log.warn("warn-helloWorld....");
         return BaseResponse.createSuccessResult("helloWorld");

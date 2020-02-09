@@ -11,6 +11,9 @@ import java.util.Map;
 @Component
 public class ValidateCodeProcessorHolder {
 
+	/**
+	 * 自动收集容器中的 ValidateCodeProcessor key 为 bean 的名称
+	 */
 	@Autowired
 	private Map<String, ValidateCodeProcessor> validateCodeProcessors;
 

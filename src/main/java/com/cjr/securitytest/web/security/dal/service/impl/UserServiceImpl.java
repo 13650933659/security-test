@@ -1,10 +1,11 @@
-package com.cjr.securitytest.web.security.dal.service;
+package com.cjr.securitytest.web.security.dal.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cjr.securitytest.web.security.dal.dao.UserMapper;
 import com.cjr.securitytest.web.security.dal.entity.Authority;
 import com.cjr.securitytest.web.security.dal.entity.User;
+import com.cjr.securitytest.web.security.dal.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -32,6 +33,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User getByUsername(String username) {
         return getOne(new QueryWrapper<User>().eq("username", username));
+    }
+
+    @Override
+    public User getByPhone(String phone) {
+        return getOne(new QueryWrapper<User>().eq("phone", phone));
     }
 
 }

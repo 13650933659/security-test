@@ -28,7 +28,7 @@ public class SmsCodeAuthenticationProvider implements AuthenticationProvider {
 		SmsCodeAuthenticationToken authenticationToken = (SmsCodeAuthenticationToken) authentication;
 
 		// 这里需要通过用户手机查询用户（能查到用户就算认证成功，因为前面已经经过了短信校验了）
-		UserDetails user = userDetailsService.loadUserByUsername((String) authenticationToken.getPrincipal());
+		UserDetails user = userDetailsService.loadUserByUsername(((String) authenticationToken.getPrincipal()));
 		if (user == null) {
 			throw new InternalAuthenticationServiceException("无法获取用户信息");
 		}

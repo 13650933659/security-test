@@ -6,12 +6,26 @@ server:
 # 数据库连接信息和数据库连接池信息
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/cjr_test?serverTimezone=Asia/Shanghai
     username: root
-    password: root
+    password: a123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 
 logging:
   level:
     root: info
+
+# mybatis-plus 配置
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper\/*.xml    # mapper.xml 文件的位置
+
+
+# 下面的配置相当于 mybatis-config.xml 的配置，以后可以需要 mybatis-config.xml 了，直接使用如下配置
+#mybatis-plus.type-aliases-package=com.nature.edu.entity
+#mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.log4j2.Log4j2Impl
+#mybatis-plus.configuration.call-setters-on-nulls=true
+#mybatis-plus.configuration.cache-enabled=true
+#mybatis-plus.configuration.map-underscore-to-camel-case=true
+#mybatis-plus.global-config.db-column-underline=true

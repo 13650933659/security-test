@@ -31,20 +31,24 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 	 */
 	@Autowired
 	private AuthenticationFailureHandler authenticationFailureHandler;
+
 	/**
 	 * 系统配置信息
 	 */
 	@Autowired
 	private SecurityProperties securityProperties;
+
 	/**
 	 * 系统中的校验码处理器的Holder
 	 */
 	@Autowired
 	private ValidateCodeProcessorHolder validateCodeProcessorHolder;
+
 	/**
 	 * 存放所有需要校验验证码的url
 	 */
 	private Map<String, ValidateCodeType> urlMap = new HashMap<>();
+
 	/**
 	 * 验证请求url与配置的url是否匹配的工具类
 	 */
@@ -82,7 +86,6 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
-
 		ValidateCodeType type = getValidateCodeType(request);
 		if (type != null) {
 			logger.info("校验请求(" + request.getRequestURI() + ")中的验证码,验证码类型" + type);
@@ -97,7 +100,6 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 		}
 
 		chain.doFilter(request, response);
-
 	}
 
 	/**
