@@ -34,7 +34,7 @@ public class TestUserDetailsService implements UserDetailsService {
 		log.info("表单登录用户名:" + username);
 		User user = userService.getByUsername(username);
 		if (user == null) {
-			user = userService.getByPhone(username);		// 根据电话获取用户以后考虑做的更加严谨一些
+			user = userService.getByPhone(username);		// 根据电话获取用户以后考虑做的更加严谨一些（支持短信验证码登录的功能）
 			if (user == null) {
 				throw new UsernameNotFoundException(String.format("user %s non existent", username));
 			}

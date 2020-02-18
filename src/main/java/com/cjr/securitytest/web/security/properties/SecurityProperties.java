@@ -26,5 +26,10 @@ public class SecurityProperties {
 	 */
 	private ValidateCodeProperties code = new ValidateCodeProperties();
 
+	/**
+	 * session属性配置
+	 */
+	private SessionProperties session = new SessionProperties();
+
 }
 

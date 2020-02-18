@@ -5,6 +5,8 @@ server:
 
 # 数据库连接信息和数据库连接池信息
 spring:
+  session:
+    timeout: 10  # session失效期 配置10秒，默认30分钟，最小1分钟
   datasource:
     url: jdbc:mysql://localhost:3306/cjr_test?serverTimezone=Asia/Shanghai
     username: root
