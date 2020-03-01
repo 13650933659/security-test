@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.session.InvalidSessionStrategy;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 
@@ -31,6 +32,8 @@ public class SecurityConfig extends AbstractChannelSecurityConfig {
     private InvalidSessionStrategy invalidSessionStrategy;
     @Autowired
     private SessionInformationExpiredStrategy sessionInformationExpiredStrategy;
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -48,6 +51,11 @@ public class SecurityConfig extends AbstractChannelSecurityConfig {
                     .expiredSessionStrategy(sessionInformationExpiredStrategy)		// session 并发导致失效处理策略
                 .and()
                 .and()
+                    .logout()
+                    .logoutUrl("/logout")                              // 退出的请求（默认也是 /logout）springsecurity 帮我们实现的没有拦截（他会帮我们做 1、使当前session失效 2、清除与用户先关的remember-me记录 3、清空当前的securityContext 4、重定向到登录页面）
+                    .logoutSuccessHandler(logoutSuccessHandler)	    // 退出之后的处理器
+                    .deleteCookies("JSESSIONID")					    // 退出之后需要清除的cookie （java存session的id）
+                .and()
                     .authorizeRequests()	// 资源
                     .antMatchers(
                             SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,				// 用户名密码登录请求处理url
@@ -55,7 +63,9 @@ public class SecurityConfig extends AbstractChannelSecurityConfig {
                             securityProperties.getLoginPage(),	// 默认登录页面
                             SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX+"/*"
                             ,securityProperties.getSession().getSessionInvalidUrl()
-                            ,"/static/*"
+//                            ,"/static/*"      // 没有生效
+                            ,"/index.html"
+                            ,"/logout.html"
     //                        "/static/js/login.js"
                     ).permitAll()	// 不需要认证的请求(处理所有需要验证的控制器、登录页面等等)
                     .anyRequest()			// 任何请求

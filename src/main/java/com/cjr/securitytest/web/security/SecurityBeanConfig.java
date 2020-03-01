@@ -1,5 +1,6 @@
 package com.cjr.securitytest.web.security;
 
+import com.cjr.securitytest.web.security.logout.TestLogoutSuccessHandler;
 import com.cjr.securitytest.web.security.properties.SecurityProperties;
 import com.cjr.securitytest.web.security.session.TestExpiredSessionStrategy;
 import com.cjr.securitytest.web.security.session.TestInvalidSessionStrategy;
@@ -8,6 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.session.InvalidSessionStrategy;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 
@@ -30,7 +32,6 @@ public class SecurityBeanConfig {
 		return new TestInvalidSessionStrategy(securityProperties.getSession().getSessionInvalidUrl());
 	}
 
-
 	/**
 	 * session并发导致失效的处理策略
 	 * @return
@@ -39,6 +40,16 @@ public class SecurityBeanConfig {
 	@ConditionalOnMissingBean(SessionInformationExpiredStrategy.class)
 	public SessionInformationExpiredStrategy sessionInformationExpiredStrategy(){
 		return new TestExpiredSessionStrategy(securityProperties.getSession().getSessionInvalidUrl());
+	}
+
+	/**
+	 * 退出之后的处理器
+	 * @return
+	 */
+	@Bean
+	@ConditionalOnMissingBean(LogoutSuccessHandler.class)
+	public TestLogoutSuccessHandler logoutSuccessHandler(){
+		return new TestLogoutSuccessHandler(securityProperties.getLogoutUrl());
 	}
 
 	/**

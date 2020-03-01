@@ -22,6 +22,11 @@ public class SecurityProperties {
 	private String loginPage = SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
 
 	/**
+	 * 退出成功时跳转的url，如果配置了，则跳到指定的url，如果没配置，则返回json数据。（注意：不是点击退出时处理的url）
+	 */
+	private String logoutUrl = SecurityConstants.DEFAULT_LOGOUT_PAGE_URL;
+
+	/**
 	 * 验证码属性配置
 	 */
 	private ValidateCodeProperties code = new ValidateCodeProperties();

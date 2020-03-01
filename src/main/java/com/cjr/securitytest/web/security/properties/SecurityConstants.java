@@ -33,6 +33,12 @@ public interface SecurityConstants {
 	String DEFAULT_LOGIN_PAGE_URL = "/login.html";
 
 	/**
+	 * 退出成功时跳转的url，如果配置了，则跳到指定的url，如果没配置，则返回json数据。（注意：不是点击退出时处理的url）
+	 *
+	 */
+	String DEFAULT_LOGOUT_PAGE_URL = "/index.html";
+
+	/**
 	 * 验证图片验证码时，http请求中默认的携带图片验证码信息的参数的名称
 	 */
 	String DEFAULT_PARAMETER_NAME_CODE_IMAGE = "imageCode";
