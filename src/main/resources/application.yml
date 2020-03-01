@@ -3,7 +3,7 @@ server:
   servlet:
     context-path: /
     session:
-      timeout: 3600s     # session失效期 配置为3600秒，默认30分钟，最小1分钟
+      timeout: 3600S     # session失效期配置一小时 为 Duration 其他格式具体去查（例如 timeout: PT1H  也是一小时）
 
 
 spring:
@@ -17,9 +17,15 @@ spring:
   # session的存储选redis（注意：session虽然存入redis，但是我之前那些session配置还是生效的）
   session:
     store-type: REDIS
+#    timeout: 120s   # 这个应该和 server.servlet.session.timeout 一样的 可是为什么不生效呢？
+#    redis:
+#      cleanup-cron: 0 */30 * * * ?  # 半小时清理失效得的session（不需要手动清除，redis就会自动的清除的，不过可能会滞后一点点，不过无所谓）
   redis:
     host: localhost   # 默认就是 localhost
-    port: 6379        # 默认就是 6379
+    port: 6379       # 默认就是 6379
+    database: 0       # 默认第0个库
+    password:
+    timeout: 1000S
 
 
 # 日志配置（使用springboot默认的日志实现）
