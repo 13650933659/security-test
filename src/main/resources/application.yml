@@ -2,24 +2,35 @@ server:
   port: 9999
   servlet:
     context-path: /
+    session:
+      timeout: 3600s     # session失效期 配置为3600秒，默认30分钟，最小1分钟
 
-# 数据库连接信息和数据库连接池信息
+
 spring:
-  session:
-    timeout: 10  # session失效期 配置10秒，默认30分钟，最小1分钟
+  # 数据库连接信息和数据库连接池信息
   datasource:
     url: jdbc:mysql://localhost:3306/cjr_test?serverTimezone=Asia/Shanghai
     username: root
     password: a123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+  # session的存储选redis（注意：session虽然存入redis，但是我之前那些session配置还是生效的）
+  session:
+    store-type: REDIS
+  redis:
+    host: localhost   # 默认就是 localhost
+    port: 6379        # 默认就是 6379
 
+
+# 日志配置（使用springboot默认的日志实现）
 logging:
   level:
     root: info
 
-# mybatis-plus 配置
 
+
+
+# mybatis-plus 配置
 mybatis-plus:
   mapper-locations: classpath*:mapper\/*.xml    # mapper.xml 文件的位置
 

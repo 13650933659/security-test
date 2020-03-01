@@ -41,12 +41,13 @@ public class TestAuthenticationSuccessHandler extends SavedRequestAwareAuthentic
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
 		logger.info("登录认证成功");
-		if (LoginResponseType.JSON.equals(securityProperties.getLoginType())) {  // 登录类型如果是发送的ajax请求，则返回json（例如：app请求，或者浏览器异步的登录请求）
-			response.setContentType("application/json;charset=UTF-8");
-			response.getWriter().write(objectMapper.writeValueAsString(authentication));
-		} else {		// 默认的处理室调整到刚刚请求的那个url
-			super.onAuthenticationSuccess(request, response, authentication);
-		}
+//		if (LoginResponseType.JSON.equals(securityProperties.getLoginType())) {  // 登录类型如果是发送的ajax请求，则返回json（例如：app请求，或者浏览器异步的登录请求）
+//			response.setContentType("application/json;charset=UTF-8");
+//			response.getWriter().write(objectMapper.writeValueAsString(authentication));
+//		} else {		// 默认的处理室调整到刚刚请求的那个url
+//			super.onAuthenticationSuccess(request, response, authentication);
+//		}
+		super.onAuthenticationSuccess(request, response, authentication);
 	}
 
 }

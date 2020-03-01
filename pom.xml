@@ -35,7 +35,13 @@
 			<artifactId>spring-security-config</artifactId>
 		</dependency>
 
-		<!-- spring-social （目前我只用到 SessionStrategy）-->
+		<!--spring-session（把session存入redis的工具）-->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session</artifactId>
+		</dependency>
+
+		 <!--spring-social （目前我只用到 SessionStrategy）-->
 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-config</artifactId>

@@ -2,14 +2,17 @@ package com.cjr.securitytest.web.security.validatecode;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
 /**
- * 验证码
+ * 验证码（需要序列号，因为他存入session可能到时session会存到redis）
  */
 @Data
-public class ValidateCode {
+public class ValidateCode implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 验证码

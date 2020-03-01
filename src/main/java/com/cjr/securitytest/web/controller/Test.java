@@ -24,9 +24,9 @@ public class Test {
      */
     @RequestMapping("/helloWorld")
     public BaseResponse helloWorld() {
-        log.info("info-helloWorld....");
-        log.warn("warn-helloWorld....");
-        return BaseResponse.createSuccessResult("helloWorld");
+        BaseResponse response = BaseResponse.createSuccessResult("请求成功！");
+        response.setData("我是返回的数据");
+        return response;
     }
 
 

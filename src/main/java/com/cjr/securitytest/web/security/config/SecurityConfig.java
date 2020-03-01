@@ -43,8 +43,8 @@ public class SecurityConfig extends AbstractChannelSecurityConfig {
                 .and()
                     .sessionManagement()
                     .invalidSessionStrategy(invalidSessionStrategy)			// session 失效处理策略
-                    .maximumSessions(securityProperties.getSession().getMaximumSessions())				// 同一个用户在系统中的最大session数（在springsecurity看来 username 是唯一的，他是根据 username 来判断此用户是否已经登录了）
-                    .maxSessionsPreventsLogin(securityProperties.getSession().isMaxSessionsPreventsLogin())	// 达到最大session时是否阻止新的登录请求，默认为false，不阻止，新的登录会将老的登录失效掉，这个无论true/false 都会调用 sessionInformationExpiredStrategy
+                    .maximumSessions(securityProperties.getSession().getMaximumSessions())		// 同一个用户在系统中的最大session数（在springsecurity看来 {@link org.springframework.security.core.userdetails.UserDetails} 是唯一的来判断此用户是否已经登录了）
+                    .maxSessionsPreventsLogin(securityProperties.getSession().isMaxSessionsPreventsLogin())	// 达到最大session时是否阻止新的登录请求，默认为false，一般默认就好都是踢掉前一个用户的，为false 才会调用下面的 sessionInformationExpiredStrategy，否则不会，security直接抛异常
                     .expiredSessionStrategy(sessionInformationExpiredStrategy)		// session 并发导致失效处理策略
                 .and()
                 .and()
